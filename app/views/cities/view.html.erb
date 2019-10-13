@@ -1,0 +1,22 @@
+<h1>Cities</h1>
+<% if City.all.length == 0 %>
+    <p>
+        There's no city now!
+    </p>
+<% elsif not City.all.nil? %>
+    <% if not params.nil? and not params[:city].nil? and City.all.key?(params[:city].to_sym) %>
+        <h4><%= City.all[params[:city].to_sym].name %></h4>
+        <p>
+            Population: <%= City.all[params[:city].to_sym].population %><br>
+            Landmark: <%= City.all[params[:city].to_sym].landmark %><br>
+        </p>
+    <% else %>
+        <% City.all.values.each do |city| %>
+            <h4> <%= city.name %></h4>
+            <p>
+                Population: <%= city.population %><br>
+                Landmark: <%= city.landmark %><br>
+            </p>
+        <% end %>
+    <% end %>
+<% end %>
